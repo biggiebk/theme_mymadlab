@@ -1,4 +1,15 @@
 /**
+ * Universal box-sizing and overflow fixes
+ */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+/**
  * Mixins - Define these first before using them
  */
 @mixin relative-font-size($ratio) {
@@ -291,7 +302,7 @@ pre {
 .wrapper {
   width: 100%;
   margin-right: 0;
-  margin-left: auto;
+  margin-left: 0;
   padding-right: $spacing-unit;
   padding-left: $spacing-unit;
   @extend %clearfix;

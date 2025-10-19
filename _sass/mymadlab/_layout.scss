@@ -200,7 +200,6 @@
   border: 1px solid $border-color;
   border-radius: 4px;
   padding: 1rem;
-  margin-right: 20px;
   position: sticky;
   top: 20px;
   
@@ -305,7 +304,7 @@
     .wrapper {
       display: flex;
       align-items: flex-start;
-      gap: 0;
+      gap: 20px; /* Use gap instead of margins */
       padding-left: $spacing-unit;
       padding-right: $spacing-unit;
     }
@@ -314,7 +313,7 @@
   body.has-toc .page-content .content-area {
     flex: 1;
     min-width: 0; /* Allow content to shrink */
-    padding-left: 20px;
+    overflow-x: auto; /* Allow horizontal scrolling for wide content */
   }
 }
 
