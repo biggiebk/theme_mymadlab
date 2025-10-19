@@ -1,4 +1,17 @@
 /**
+ * Mixins - Define these first before using them
+ */
+@mixin relative-font-size($ratio) {
+  font-size: $base-font-size * $ratio;
+}
+
+@mixin media-query($device) {
+  @media screen and (max-width: $device) {
+    @content;
+  }
+}
+
+/**
  * Reset some basic elements
  */
 body, h1, h2, h3, h4, h5, h6,
@@ -232,15 +245,3 @@ table {
   }
 }
 
-/**
- * Mixins
- */
-@mixin relative-font-size($ratio) {
-  font-size: $base-font-size * $ratio;
-}
-
-@mixin media-query($device) {
-  @media screen and (max-width: $device) {
-    @content;
-  }
-}
