@@ -15,7 +15,11 @@ function generateTableOfContents() {
   console.log('TOC: Starting generateTableOfContents');
   
   // Find all headers (H1, H2, H3) within the main content
-  const contentArea = document.querySelector('main.page-content');
+  let contentArea = document.querySelector('main.page-content .wrapper');
+  if (!contentArea) {
+    contentArea = document.querySelector('main.page-content');
+  }
+  
   if (!contentArea) {
     console.log('TOC: Content area not found, trying body');
     // Fallback to entire document
@@ -112,23 +116,33 @@ function createTOC(headers) {
 }
 
 function insertTOC(tocContainer) {
-  // Insert TOC into page - try multiple insertion points
-  let insertionPoint = document.querySelector('.page-content .wrapper');
-  if (!insertionPoint) {
-    insertionPoint = document.querySelector('main.page-content');
-  }
-  if (!insertionPoint) {
-    insertionPoint = document.querySelector('body');
+  // Find the wrapper element
+  const wrapper = document.querySelector('.page-content .wrapper');
+  
+  if (!wrapper) {
+    console.log('TOC: Wrapper not found, cannot insert TOC');
+    return;
   }
   
-  if (insertionPoint) {
-    console.log('TOC: Inserting TOC into', insertionPoint.tagName, insertionPoint.className);
-    // For fixed positioning, we can append anywhere
-    document.body.appendChild(tocContainer);
-    console.log('TOC: TOC inserted successfully');
-  } else {
-    console.log('TOC: No suitable insertion point found');
-  }
+  console.log('TOC: Found wrapper, setting up flex layout');
+  
+  // Wrap existing content in a content-area div
+  const existingContent = wrapper.innerHTML;
+  wrapper.innerHTML = '';
+  
+  // Create content area
+  const contentArea = document.createElement('div');
+  contentArea.className = 'content-area';
+  contentArea.innerHTML = existingContent;
+  
+  // Add TOC first, then content area
+  wrapper.appendChild(tocContainer);
+  wrapper.appendChild(contentArea);
+  
+  // Add has-toc class to body for styling
+  document.body.classList.add('has-toc');
+  
+  console.log('TOC: TOC inserted successfully with flex layout');
 }
 
 function generateHeaderId(text, index) {
@@ -144,7 +158,9 @@ function generateHeaderId(text, index) {
 }
 
 function setupTOCScrollSpy() {
-  const headers = document.querySelectorAll('h1, h2, h3');
+  // Look for headers within the content area after TOC insertion
+  const contentArea = document.querySelector('.content-area') || document.querySelector('main.page-content');
+  const headers = contentArea ? contentArea.querySelectorAll('h1, h2, h3') : document.querySelectorAll('h1, h2, h3');
   const tocLinks = document.querySelectorAll('.toc-link');
   
   if (headers.length === 0 || tocLinks.length === 0) {
