@@ -55,6 +55,14 @@
     &:hover {
       color: $accent-color;
     }
+    
+    // GitHub icon styling
+    .github-icon {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 5px;
+      fill: currentColor;
+    }
   }
 
   @include media-query($on-palm) {

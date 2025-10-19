@@ -17,6 +17,10 @@ plugins:
 author: Your Name
 email: your-email@example.com
 github_username: biggiebk
+repository: biggiebk/theme_mymadlab
+
+# Header navigation
+header_pages:
 
 # Exclude from processing
 exclude:
