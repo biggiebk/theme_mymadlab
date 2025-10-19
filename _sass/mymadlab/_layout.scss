@@ -219,17 +219,16 @@
   width: 250px;
   min-width: 250px;
   height: fit-content;
-  max-height: calc(100vh - 40px);
+  max-height: calc(100vh - 140px);
   overflow-y: auto;
   background: rgba(0, 0, 0, 0.4);
   border: 1px solid $border-color;
   border-radius: 4px;
   padding: 1rem;
-  position: -webkit-sticky; /* Safari support */
-  position: sticky;
-  top: 20px;
-  align-self: flex-start; /* Ensure proper flex behavior */
-  z-index: 100; /* Ensure it stays above other content */
+  position: fixed;
+  top: 120px;
+  left: 30px;
+  z-index: 1000; /* Ensure it stays above other content */
   
   // Hide on smaller screens
   @include media-query($on-laptop) {
@@ -326,23 +325,11 @@
   }
 }
 
-// Flexbox layout when TOC is present
+// Content adjustment when TOC is present (fixed positioning)
 @media screen and (min-width: #{$on-laptop + 1px}) {
   body.has-toc .page-content {
-    .wrapper {
-      display: flex;
-      align-items: flex-start;
-      gap: 20px; /* Use gap instead of margins */
-      padding-left: $spacing-unit;
-      padding-right: $spacing-unit;
-      min-height: calc(100vh - 200px); /* Ensure minimum height for sticky context */
-    }
-  }
-  
-  body.has-toc .page-content .content-area {
-    flex: 1;
-    min-width: 0; /* Allow content to shrink */
-    overflow-x: auto; /* Allow horizontal scrolling for wide content */
+    margin-left: 300px; /* Make room for fixed TOC */
+    margin-right: 30px; /* Add some right margin for readability */
   }
 }
 
