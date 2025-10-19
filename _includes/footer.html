@@ -27,7 +27,9 @@
 
       <div class="footer-col footer-col-3">
         {%- if site.github_username -%}
-        <p>{{ site.github_username | escape }}</p>
+        <p class="github-link-container">
+          <a href="https://github.com/{{ site.github_username | cgi_escape | escape }}" class="github-profile-link" target="_blank" rel="noopener">{{ site.github_username | escape }}</a>
+        </p>
         {%- endif -%}
       </div>
     </div>

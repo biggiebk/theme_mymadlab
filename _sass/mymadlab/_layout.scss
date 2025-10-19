@@ -188,6 +188,22 @@
   }
 }
 
+// GitHub profile link styling
+.github-link-container {
+  text-align: right;
+  margin: 0;
+}
+
+.github-profile-link {
+  color: $foreground-color;
+  text-decoration: none;
+  
+  &:hover {
+    color: $accent-color;
+    text-decoration: underline;
+  }
+}
+
 /**
  * Page content
  */
