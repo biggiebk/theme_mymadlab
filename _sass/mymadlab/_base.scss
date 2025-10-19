@@ -12,6 +12,42 @@
 }
 
 /**
+ * Custom scrollbar styling for dark theme
+ */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(23, 32, 36, 0.8);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(192, 239, 254, 0.3);
+  border-radius: 4px;
+  
+  &:hover {
+    background: rgba(192, 239, 254, 0.5);
+  }
+  
+  &:active {
+    background: rgba(192, 239, 254, 0.7);
+  }
+}
+
+::-webkit-scrollbar-corner {
+  background: rgba(23, 32, 36, 0.8);
+}
+
+/* Firefox scrollbar styling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(192, 239, 254, 0.3) rgba(23, 32, 36, 0.8);
+}
+
+/**
  * Reset some basic elements
  */
 body, h1, h2, h3, h4, h5, h6,
@@ -162,12 +198,37 @@ pre {
   background-color: rgba(0, 0, 0, 0.4);
   border-radius: 4px;
 
+  /* Custom scrollbar for regular pre blocks */
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: rgba(192, 239, 254, 0.4);
+    border-radius: 3px;
+    
+    &:hover {
+      background: rgba(192, 239, 254, 0.6);
+    }
+  }
+
   // Remove styling for highlighted code blocks (they get styled by .highlight pre)
   .highlight & {
     padding: 0;
     border: 0;
     background-color: transparent;
     border-radius: 0;
+    
+    /* Remove scrollbar styling - handled by .highlight pre */
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   > code {

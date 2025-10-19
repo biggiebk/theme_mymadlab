@@ -16,6 +16,26 @@
     overflow-x: auto;
     border: 1px solid $border-color;
     margin: 0;
+    
+    /* Custom scrollbar for code blocks */
+    &::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    
+    &::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 3px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      background: rgba(192, 239, 254, 0.4);
+      border-radius: 3px;
+      
+      &:hover {
+        background: rgba(192, 239, 254, 0.6);
+      }
+    }
   }
 
   // Base styles
