@@ -116,33 +116,13 @@ function createTOC(headers) {
 }
 
 function insertTOC(tocContainer) {
-  // Find the wrapper element
-  const wrapper = document.querySelector('.page-content .wrapper');
-  
-  if (!wrapper) {
-    console.log('TOC: Wrapper not found, cannot insert TOC');
-    return;
-  }
-  
-  console.log('TOC: Found wrapper, setting up flex layout');
-  
-  // Wrap existing content in a content-area div
-  const existingContent = wrapper.innerHTML;
-  wrapper.innerHTML = '';
-  
-  // Create content area
-  const contentArea = document.createElement('div');
-  contentArea.className = 'content-area';
-  contentArea.innerHTML = existingContent;
-  
-  // Add TOC first, then content area
-  wrapper.appendChild(tocContainer);
-  wrapper.appendChild(contentArea);
+  // For fixed positioning, we can append to body
+  document.body.appendChild(tocContainer);
   
   // Add has-toc class to body for styling
   document.body.classList.add('has-toc');
   
-  console.log('TOC: TOC inserted successfully with flex layout');
+  console.log('TOC: TOC inserted successfully with fixed positioning');
 }
 
 function generateHeaderId(text, index) {
@@ -158,9 +138,9 @@ function generateHeaderId(text, index) {
 }
 
 function setupTOCScrollSpy() {
-  // Look for headers within the content area after TOC insertion
-  const contentArea = document.querySelector('.content-area') || document.querySelector('main.page-content');
-  const headers = contentArea ? contentArea.querySelectorAll('h1, h2, h3') : document.querySelectorAll('h1, h2, h3');
+  // Look for headers within the main content area
+  const contentArea = document.querySelector('main.page-content') || document.body;
+  const headers = contentArea.querySelectorAll('h1, h2, h3');
   const tocLinks = document.querySelectorAll('.toc-link');
   
   if (headers.length === 0 || tocLinks.length === 0) {
