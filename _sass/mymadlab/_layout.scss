@@ -301,10 +301,12 @@
 
 // Adjust main content margin when TOC is present
 @media screen and (min-width: #{$on-laptop + 1px}) {
-  .page-content .wrapper {
-    margin-left: 290px; // TOC width + spacing
-    max-width: calc(#{$content-width} - 290px);
-  }
+  /* TOC is present - adjust content */
+body.has-toc .page-content,
+body.has-toc .post-content {
+  margin-left: 290px;
+  margin-right: 30px; /* Add some right margin for readability */
+}
 }
 
 .page-heading {
