@@ -2,23 +2,23 @@
  * Enhanced copy-to-clipboard functionality for MyMadLab theme
  */
 document.addEventListener('DOMContentLoaded', function() {
-  // Wait for Prism to load
-  if (typeof Prism !== 'undefined') {
+  // Wait for Prism to load and initialize, then add our copy buttons
+  setTimeout(function() {
     initializeCopyButtons();
-  } else {
-    // Fallback: wait a bit for Prism to load
-    setTimeout(initializeCopyButtons, 100);
-  }
+  }, 200); // Give Prism time to initialize
 });
 
 function initializeCopyButtons() {
   // Add copy buttons to all code blocks (both Prism and regular Jekyll)
-  const codeBlocks = document.querySelectorAll('pre[class*="language-"], .highlight pre, pre code, pre');
+  const codeBlocks = document.querySelectorAll('pre[class*="language-"], .highlight pre, pre');
   
   codeBlocks.forEach(function(codeBlock) {
-    // Skip if already has button or if it's not actually a code container
-    if (codeBlock.querySelector('.copy-button')) return;
+    // Skip if already has any copy button or if it's not actually a code container
+    if (codeBlock.querySelector('.copy-button') || 
+        codeBlock.querySelector('.copy-to-clipboard-button') ||
+        codeBlock.querySelector('[class*="copy"]')) return;
     if (!codeBlock.textContent.trim()) return;
+    if (codeBlock.closest('.code-toolbar')) return; // Skip if already wrapped by Prism toolbar
     
     // For Jekyll highlight blocks, target the pre inside .highlight
     const targetBlock = codeBlock.classList.contains('highlight') ? 
