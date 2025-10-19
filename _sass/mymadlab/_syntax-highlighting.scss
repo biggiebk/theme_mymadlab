@@ -109,8 +109,18 @@ code[class*="language-"],
 pre[class*="language-"] {
   font-family: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace !important;
   color: #c0efff !important;
-  background: rgba(0, 0, 0, 0.4) !important;
+  background: transparent !important;
   text-shadow: none !important;
+}
+
+/* Ensure Prism containers have consistent backgrounds */
+pre[class*="language-"] {
+  background: rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Remove any background from code elements inside Prism blocks */
+pre[class*="language-"] code[class*="language-"] {
+  background: transparent !important;
 }
 
 /* Override Prism Tomorrow theme colors to match our theme */
@@ -176,6 +186,13 @@ pre[class*="language-"] {
   background: rgba(0, 0, 0, 0.3) !important;
   padding: 0.1em 0.3em !important;
   border-radius: 0.3em !important;
+}
+
+/* Block code - ensure consistent background */
+pre[class*="language-"] > code[class*="language-"] {
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
 }
 
 /* Code blocks with language labels */
