@@ -26,7 +26,9 @@
       </div>
 
       <div class="footer-col footer-col-3">
-        <p>{{- site.description | escape -}}</p>
+        {%- if site.github_username -%}
+        <p>{{ site.github_username | escape }}</p>
+        {%- endif -%}
       </div>
     </div>
 
