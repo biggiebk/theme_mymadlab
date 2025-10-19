@@ -78,6 +78,29 @@ processor.processAsync().then(console.log);
 }
 ```
 
+### KQL (Kusto Query Language)
+```kql
+// Azure Log Analytics - Security Event Analysis
+SecurityEvent
+| where TimeGenerated > ago(24h)
+| where EventID in (4624, 4625, 4648)  // Logon events
+| extend LogonType = case(
+    EventID == 4624, "Successful Logon",
+    EventID == 4625, "Failed Logon", 
+    EventID == 4648, "Explicit Logon",
+    "Unknown"
+)
+| summarize 
+    EventCount = count(),
+    UniqueAccounts = dcount(Account),
+    LastSeen = max(TimeGenerated)
+    by LogonType, Computer
+| where EventCount > 10
+| order by EventCount desc
+| project-reorder Computer, LogonType, EventCount, UniqueAccounts, LastSeen
+| limit 100
+```
+
 ## Features
 
 The theme supports all common Jekyll features and more:
