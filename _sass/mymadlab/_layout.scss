@@ -218,14 +218,18 @@
 .table-of-contents {
   width: 250px;
   min-width: 250px;
-  max-height: calc(100vh - 200px);
+  height: fit-content;
+  max-height: calc(100vh - 40px);
   overflow-y: auto;
   background: rgba(0, 0, 0, 0.4);
   border: 1px solid $border-color;
   border-radius: 4px;
   padding: 1rem;
+  position: -webkit-sticky; /* Safari support */
   position: sticky;
   top: 20px;
+  align-self: flex-start; /* Ensure proper flex behavior */
+  z-index: 100; /* Ensure it stays above other content */
   
   // Hide on smaller screens
   @include media-query($on-laptop) {
@@ -331,6 +335,7 @@
       gap: 20px; /* Use gap instead of margins */
       padding-left: $spacing-unit;
       padding-right: $spacing-unit;
+      min-height: calc(100vh - 200px); /* Ensure minimum height for sticky context */
     }
   }
   
