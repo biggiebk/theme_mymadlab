@@ -170,51 +170,13 @@ pre[class*="language-"] {
 }
 
 /**
- * Copy to clipboard functionality
+ * Copy button styles for code blocks
  */
-.code-toolbar {
-  position: relative;
-  
-  .toolbar {
-    position: absolute;
-    top: 0.5em;
-    right: 0.5em;
-    z-index: 10;
-    
-    .toolbar-item {
-      display: inline-block;
-      
-      button {
-        background: rgba(0, 0, 0, 0.6);
-        border: 1px solid $border-color;
-        border-radius: 4px;
-        color: $muted-color;
-        cursor: pointer;
-        font-size: 0.75em;
-        padding: 0.3em 0.6em;
-        transition: all 0.2s ease;
-        
-        &:hover {
-          background: rgba(0, 0, 0, 0.8);
-          color: $foreground-color;
-          border-color: $accent-color;
-        }
-        
-        &:focus {
-          outline: 2px solid $accent-color;
-          outline-offset: 2px;
-        }
-      }
-    }
-  }
-}
-
-/* Copy button states */
-.copy-to-clipboard-button {
+.copy-button {
   background: rgba(0, 0, 0, 0.6) !important;
-  border: 1px solid $border-color !important;
+  border: 1px solid rgba(192, 239, 254, 0.3) !important;
   border-radius: 4px !important;
-  color: $muted-color !important;
+  color: rgba(192, 239, 254, 0.7) !important;
   cursor: pointer !important;
   font-size: 0.75em !important;
   padding: 0.3em 0.6em !important;
@@ -226,26 +188,18 @@ pre[class*="language-"] {
   
   &:hover {
     background: rgba(0, 0, 0, 0.8) !important;
-    color: $foreground-color !important;
-    border-color: $accent-color !important;
+    color: rgb(192, 239, 254) !important;
+    border-color: rgb(100, 200, 255) !important;
   }
   
   &:focus {
-    outline: 2px solid $accent-color !important;
+    outline: 2px solid rgb(100, 200, 255) !important;
     outline-offset: 2px !important;
   }
-}
-
-/* Success state after copying */
-.copy-to-clipboard-button[data-copy-state="copy-success"] {
-  background: rgba(166, 226, 46, 0.2) !important;
-  border-color: #a6e22e !important;
-  color: #a6e22e !important;
-}
-
-/* Error state */
-.copy-to-clipboard-button[data-copy-state="copy-error"] {
-  background: rgba(249, 38, 114, 0.2) !important;
-  border-color: #f92672 !important;
-  color: #f92672 !important;
+  
+  &.copied {
+    background: rgba(166, 226, 46, 0.2) !important;
+    border-color: #a6e22e !important;
+    color: #a6e22e !important;
+  }
 }
