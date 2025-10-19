@@ -188,6 +188,125 @@
   flex: 1;
 }
 
+/**
+ * Table of Contents
+ */
+.table-of-contents {
+  position: fixed;
+  top: 120px;
+  left: 20px;
+  width: 250px;
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid $border-color;
+  border-radius: 6px;
+  padding: 1rem;
+  z-index: 100;
+  
+  // Hide on smaller screens
+  @include media-query($on-laptop) {
+    display: none;
+  }
+  
+  .toc-header {
+    color: $foreground-color;
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0 0 0.75rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid $border-color;
+  }
+  
+  .toc-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .toc-item {
+    margin: 0;
+    
+    &.toc-h1 {
+      margin: 0.5rem 0 0.25rem 0;
+      
+      .toc-link {
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+    }
+    
+    &.toc-h2 {
+      margin: 0.25rem 0 0.125rem 1rem;
+      
+      .toc-link {
+        font-weight: 500;
+        font-size: 0.85rem;
+      }
+    }
+    
+    &.toc-h3 {
+      margin: 0.125rem 0 0.125rem 2rem;
+      
+      .toc-link {
+        font-weight: 400;
+        font-size: 0.8rem;
+      }
+    }
+  }
+  
+  .toc-link {
+    display: block;
+    color: $muted-color;
+    text-decoration: none;
+    padding: 0.25rem 0;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    line-height: 1.3;
+    
+    &:hover {
+      color: $foreground-color;
+      background: rgba(192, 239, 254, 0.1);
+      text-decoration: none;
+    }
+    
+    &.active {
+      color: $accent-color;
+      background: rgba(100, 200, 255, 0.1);
+      border-left: 3px solid $accent-color;
+      padding-left: 0.5rem;
+      margin-left: -0.5rem;
+    }
+  }
+  
+  // Custom scrollbar for TOC
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: rgba(192, 239, 254, 0.3);
+    border-radius: 2px;
+    
+    &:hover {
+      background: rgba(192, 239, 254, 0.5);
+    }
+  }
+}
+
+// Adjust main content margin when TOC is present
+@media screen and (min-width: #{$on-laptop + 1px}) {
+  .page-content .wrapper {
+    margin-left: 290px; // TOC width + spacing
+    max-width: calc(#{$content-width} - 290px);
+  }
+}
+
 .page-heading {
   @include relative-font-size(2);
 }
