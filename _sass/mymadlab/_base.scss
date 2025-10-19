@@ -159,6 +159,16 @@ pre {
   overflow-x: auto;
   border: 1px solid $border-color;
   position: relative;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 4px;
+
+  // Remove styling for highlighted code blocks (they get styled by .highlight pre)
+  .highlight & {
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    border-radius: 0;
+  }
 
   > code {
     border: 0;

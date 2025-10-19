@@ -2,15 +2,20 @@
  * Syntax highlighting styles - Custom dark theme optimized for RGB(23,32,36) background
  */
 .highlight {
-  background-color: rgba(0, 0, 0, 0.4);
-  border-radius: 4px;
-  padding: 1em;
   margin-bottom: 1em;
-  overflow-x: auto;
   position: relative;
 
   .highlighter-rouge & {
+    background-color: transparent;
+  }
+
+  pre {
     background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+    padding: 1em;
+    overflow-x: auto;
+    border: 1px solid $border-color;
+    margin: 0;
   }
 
   // Base styles
