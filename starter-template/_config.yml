@@ -1,0 +1,52 @@
+remote_theme: biggiebk/theme_mymadlab
+
+# Site settings
+title: Your Amazing Site
+description: >-
+  Write an awesome description for your new site here. You can edit this
+  line in _config.yml. It will appear in your document head meta (for
+  Google search results) and in your feed.xml site description.
+
+# Personal info
+author: Your Name
+email: your-email@example.com
+github_username: yourusername
+repository: yourusername/your-repo-name
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+plugins:
+  - jekyll-remote-theme
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Theme configuration
+show_posts: true
+show_rss_subscribe: false
+header_pages: []
+
+# Exclude from processing
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+
+# Optional: Analytics
+# google_analytics: UA-XXXXXXXX-X
+
+# Optional: Social media
+# twitter_username: yourusername
+# linkedin_username: yourusername
+
+# Optional: Comments
+# disqus:
+#   shortname: your-disqus-shortname
