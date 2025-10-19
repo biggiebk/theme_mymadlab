@@ -111,3 +111,94 @@ The theme supports all common Jekyll features and more:
 - RSS feeds
 - Syntax highlighting for 100+ languages
 - Dark theme optimized for long reading sessions
+
+## Markdown Syntax Examples
+
+This theme beautifully renders all standard Markdown elements:
+
+### Headers
+
+# H1 Header
+## H2 Header  
+### H3 Header
+#### H4 Header
+##### H5 Header
+###### H6 Header
+
+### Text Formatting
+
+**Bold text** and *italic text* and ***bold italic text***
+
+~~Strikethrough text~~
+
+`Inline code` with monospace formatting
+
+### Lists
+
+**Unordered List:**
+- First item
+- Second item
+  - Nested item
+  - Another nested item
+- Third item
+
+**Ordered List:**
+1. First step
+2. Second step
+   1. Sub-step A
+   2. Sub-step B
+3. Third step
+
+**Task List:**
+- [x] Completed task
+- [ ] Incomplete task
+- [x] Another completed task
+
+### Links and Images
+
+[Link to GitHub](https://github.com/biggiebk/theme_mymadlab)
+
+[Link with title](https://jekyllrb.com "Jekyll Documentation")
+
+![Alt text for image](https://via.placeholder.com/400x200/172024/c0efff?text=MyMadLab+Theme)
+
+### Quotes
+
+> This is a blockquote. It can span multiple lines and will be styled 
+> with the theme's color scheme. Perfect for highlighting important 
+> information or quotes.
+
+> You can also have nested quotes:
+> > This is a nested quote inside another quote.
+
+### Tables
+
+| Feature | Description | Status |
+|---------|-------------|--------|
+| Dark Theme | RGB(23,32,36) background | ✅ Complete |
+| Syntax Highlighting | 100+ languages | ✅ Complete |
+| Copy Buttons | One-click code copying | ✅ Complete |
+| Responsive Design | Mobile-friendly | ✅ Complete |
+| Monospace Fonts | Consistent typography | ✅ Complete |
+
+### Horizontal Rule
+
+---
+
+### Definition Lists
+
+Term 1
+: Definition for term 1
+
+Term 2
+: Definition for term 2
+: Another definition for term 2
+
+### Footnotes
+
+Here's a sentence with a footnote[^1].
+
+And here's another footnote[^note].
+
+[^1]: This is the first footnote.
+[^note]: This is a named footnote with more detailed information.
