@@ -5,11 +5,9 @@ date: 2025-10-18 12:00:00 +0000
 categories: theme introduction
 ---
 
-## Markdown Syntax Examples
-
 This theme beautifully renders all standard Markdown elements:
 
-### Headers
+## Headers
 
 # H1 Header
 ## H2 Header  
@@ -18,7 +16,7 @@ This theme beautifully renders all standard Markdown elements:
 ##### H5 Header
 ###### H6 Header
 
-### Text Formatting
+## Text Formatting
 
 **Bold text** and *italic text* and ***bold italic text***
 
@@ -26,7 +24,7 @@ This theme beautifully renders all standard Markdown elements:
 
 `Inline code` with monospace formatting
 
-### Lists
+## Lists
 
 **Unordered List:**
 - First item
@@ -47,7 +45,7 @@ This theme beautifully renders all standard Markdown elements:
 - [ ] Incomplete task
 - [x] Another completed task
 
-### Links and Images
+## Links and Images
 
 [Link to GitHub](https://github.com/biggiebk/theme_mymadlab)
 
@@ -55,7 +53,7 @@ This theme beautifully renders all standard Markdown elements:
 
 ![Alt text for image](https://via.placeholder.com/400x200/172024/c0efff?text=MyMadLab+Theme)
 
-### Quotes
+## Quotes
 
 > This is a blockquote. It can span multiple lines and will be styled 
 > with the theme's color scheme. Perfect for highlighting important 
@@ -64,7 +62,7 @@ This theme beautifully renders all standard Markdown elements:
 > You can also have nested quotes:
 > > This is a nested quote inside another quote.
 
-### Tables
+## Tables
 
 | Feature | Description | Status |
 |---------|-------------|--------|
@@ -74,11 +72,11 @@ This theme beautifully renders all standard Markdown elements:
 | Responsive Design | Mobile-friendly | ✅ Complete |
 | Monospace Fonts | Consistent typography | ✅ Complete |
 
-### Horizontal Rule
+## Horizontal Rule
 
 ---
 
-### Definition Lists
+## Definition Lists
 
 Term 1
 : Definition for term 1
