@@ -568,22 +568,85 @@
 .category-page {
   .category-header {
     margin-bottom: $spacing-unit * 1.5;
-    text-align: center;
+    
+    .breadcrumb {
+      color: $muted-color;
+      font-size: $small-font-size;
+      margin-bottom: 1rem;
+      
+      a {
+        color: $accent-color;
+        text-decoration: none;
+        
+        &:hover {
+          color: $foreground-color;
+          text-decoration: underline;
+        }
+      }
+      
+      span {
+        color: $foreground-color;
+        font-weight: 500;
+      }
+    }
     
     .category-title {
       margin-bottom: 0.5rem;
       color: $foreground-color;
+      text-align: center;
     }
     
     .category-description {
       color: $muted-color;
       font-size: 1.1rem;
       margin: 0;
+      text-align: center;
+    }
+  }
+  
+  .category-content {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid $border-color;
+    border-radius: 8px;
+    padding: $spacing-unit;
+    margin-bottom: $spacing-unit * 1.5;
+    
+    p {
+      margin-bottom: 0;
+      color: $muted-color;
+      font-style: italic;
     }
   }
   
   .category-posts {
     margin-bottom: $spacing-unit;
+    
+    h2 {
+      color: $foreground-color;
+      border-bottom: 2px solid rgba(192, 239, 254, 0.3);
+      padding-bottom: 0.5rem;
+      margin-bottom: $spacing-unit;
+    }
+    
+    .category-label {
+      color: $muted-color;
+      font-size: $small-font-size;
+      margin-right: 0.5rem;
+    }
+    
+    .post-excerpt {
+      margin-top: 0.5rem;
+      color: $muted-color;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+  }
+  
+  .no-posts {
+    text-align: center;
+    padding: $spacing-unit * 2;
+    color: $muted-color;
+    font-style: italic;
   }
   
   .category-navigation {
@@ -596,10 +659,16 @@
       color: $accent-color;
       text-decoration: none;
       font-size: 1.1rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(100, 200, 255, 0.3);
+      border-radius: 4px;
+      transition: all 0.2s ease;
       
       &:hover {
         color: $foreground-color;
-        text-decoration: underline;
+        background: rgba(100, 200, 255, 0.1);
+        border-color: rgba(100, 200, 255, 0.5);
+        text-decoration: none;
       }
     }
   }
