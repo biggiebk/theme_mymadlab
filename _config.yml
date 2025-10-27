@@ -49,8 +49,7 @@ kramdown:
     span:
       line_numbers: false
     block:
-      line_numbers: true
-      line_numbers_start: 1
+      line_numbers: false
   # Enable extended kramdown features
   parse_block_html: true
   parse_span_html: true
