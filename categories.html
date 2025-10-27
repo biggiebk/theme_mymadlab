@@ -19,7 +19,7 @@ permalink: /categories/
         {% assign posts = category[1] %}
         <div class="category-card">
           <h3>
-            <a href="{{ '/categories/' | append: category_name | slugify | relative_url }}">
+            <a href="{{ site.baseurl }}/categories/{{ category_name | slugify }}/">
               {{ category_name | capitalize }}
             </a>
           </h3>
@@ -36,7 +36,7 @@ permalink: /categories/
             {% endfor %}
             {% if posts.size > 3 %}
               <div class="more-posts">
-                <a href="{{ '/categories/' | append: category_name | slugify | relative_url }}">
+                <a href="{{ site.baseurl }}/categories/{{ category_name | slugify }}/">
                   View {{ posts.size | minus: 3 }} more...
                 </a>
               </div>

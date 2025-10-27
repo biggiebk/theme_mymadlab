@@ -20,7 +20,7 @@ layout: default
           {%- if post.categories and post.categories.size > 0 -%}
             <div class="post-categories">
               {%- for category in post.categories sorted -%}
-                <a href="{{ '/categories/' | append: category | slugify | relative_url }}" class="category-tag">{{ category | capitalize }}</a>
+                <a href="{{ site.baseurl }}/categories/{{ category | slugify }}/" class="category-tag">{{ category | capitalize }}</a>
               {%- endfor -%}
             </div>
           {%- endif -%}
