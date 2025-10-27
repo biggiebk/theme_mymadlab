@@ -137,6 +137,44 @@ li {
 }
 
 /**
+ * Definition Lists
+ */
+dl {
+  margin-bottom: $spacing-unit;
+  
+  dt {
+    font-weight: bold;
+    color: $foreground-color;
+    margin-top: $spacing-unit / 2;
+    margin-bottom: $spacing-unit / 4;
+    border-bottom: 1px solid rgba(192, 239, 254, 0.2);
+    padding-bottom: 2px;
+    display: inline-block;
+    
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+  
+  dd {
+    margin-left: $spacing-unit;
+    margin-bottom: $spacing-unit / 4;
+    color: rgba(192, 239, 254, 0.9);
+    padding-left: $spacing-unit / 4;
+    border-left: 2px solid rgba(192, 239, 254, 0.3);
+    
+    &:last-child {
+      margin-bottom: $spacing-unit / 2;
+    }
+    
+    // Multiple definitions for the same term
+    & + dd {
+      margin-top: $spacing-unit / 8;
+    }
+  }
+}
+
+/**
  * Headings
  */
 h1, h2, h3, h4, h5, h6 {

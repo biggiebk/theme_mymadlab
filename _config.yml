@@ -49,3 +49,21 @@ kramdown:
       line_numbers: false
     block:
       line_numbers: false
+  # Enable extended kramdown features
+  parse_block_html: true
+  parse_span_html: true
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  enable_coderay: false
+  # Enable definition lists and other extensions
+  extensions:
+    - tables
+    - autolink
+    - strikethrough
+    - superscript
+    - with_toc_data
+    - footnotes
+    - smart_quotes
