@@ -25,6 +25,7 @@ show_rss_subscribe: true  # Show RSS subscription links
 
 # Header navigation
 header_pages:
+  - categories.md
 
 # Exclude from processing
 exclude:

@@ -1,0 +1,53 @@
+---
+layout: default
+---
+<div class="category-page">
+  <header class="category-header">
+    <h1 class="category-title">{{ page.title | default: page.category | capitalize }}</h1>
+    <p class="category-description">
+      {%- assign category_posts = site.posts | where: "categories", page.category -%}
+      {{ category_posts | size }} 
+      {%- if category_posts.size == 1 -%}post{%- else -%}posts{%- endif -%} 
+      in {{ page.category | capitalize }}
+    </p>
+  </header>
+
+  {{ content }}
+
+  {%- assign posts = site.posts | where: "categories", page.category -%}
+  {%- if posts.size > 0 -%}
+    <div class="category-posts">
+      <ul class="post-list">
+        {%- for post in posts -%}
+        <li>
+          <div class="post-item-header">
+            {%- assign date_format = site.mymadlab.date_format | default: "%b %-d, %Y" -%}
+            <span class="post-meta">{{ post.date | date: date_format }}</span>
+            {%- if post.categories.size > 1 -%}
+              <div class="post-categories">
+                {%- for category in post.categories sorted -%}
+                  {%- unless category == page.category -%}
+                    <a href="{{ '/categories/' | append: category | slugify | relative_url }}" class="category-tag">{{ category | capitalize }}</a>
+                  {%- endunless -%}
+                {%- endfor -%}
+              </div>
+            {%- endif -%}
+          </div>
+          <h3>
+            <a class="post-link" href="{{ post.url | relative_url }}">
+              {{ post.title | escape }}
+            </a>
+          </h3>
+          {%- if site.show_excerpts -%}
+            {{ post.excerpt }}
+          {%- endif -%}
+        </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  {%- endif -%}
+
+  <div class="category-navigation">
+    <a href="{{ '/categories/' | relative_url }}" class="back-to-categories">← All Categories</a>
+  </div>
+</div>
