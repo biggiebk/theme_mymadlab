@@ -18,7 +18,7 @@ author: Bryce Klimoski
 email: biggiebk@mymadlab.net
 github_username: biggiebk
 repository: biggiebk/theme_mymadlab
-
+ß
 # Display options
 show_posts: true          # Show posts list on homepage
 show_rss_subscribe: true  # Show RSS subscription links
@@ -26,6 +26,9 @@ show_rss_subscribe: true  # Show RSS subscription links
 # Header navigation
 header_pages:
   - categories.html
+
+# Page navigation settings
+enable_page_paths: false   # Set to false to disable automatic page discovery for header navigation
 
 # Exclude from processing
 exclude:

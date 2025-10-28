@@ -14,8 +14,19 @@
       </label>
 
       <div class="trigger">
-        {%- assign default_paths = site.pages | map: "path" -%}
-        {%- assign page_paths = site.header_pages | default: default_paths -%}
+        {%- comment -%}
+        Check if page paths should be used for navigation
+        {%- endcomment -%}
+        {%- assign enable_page_paths = site.enable_page_paths -%}
+        {%- if enable_page_paths == nil -%}{%- assign enable_page_paths = true -%}{%- endif -%}
+        
+        {%- if enable_page_paths -%}
+          {%- assign default_paths = site.pages | map: "path" -%}
+          {%- assign page_paths = site.header_pages | default: default_paths -%}
+        {%- else -%}
+          {%- assign page_paths = site.header_pages | default: "" | split: "," -%}
+        {%- endif -%}
+        
         {%- for path in page_paths -%}
           {%- assign my_page = site.pages | where: "path", path | first -%}
           {%- if my_page.title -%}
