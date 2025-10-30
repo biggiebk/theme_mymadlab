@@ -108,14 +108,27 @@ function createTOC(headers) {
         
         // Temporarily disable scroll spy during smooth scroll to prevent conflicts
         window.tocScrollSpyEnabled = false;
+        window.tocClickedLink = link; // Remember which link was clicked
         
         // Re-enable scroll spy after smooth scroll completes
         setTimeout(() => {
           window.tocScrollSpyEnabled = true;
-          // Force an update to ensure correct highlighting after scroll
+          window.tocClickedLink = null;
+          
+          // Only update if we're not near the target header
+          const targetRect = target.getBoundingClientRect();
+          const windowHeight = window.innerHeight;
+          
+          // If the target header is reasonably visible (top 50% of viewport), keep the clicked highlight
+          if (targetRect.top <= windowHeight * 0.5 && targetRect.bottom >= 0) {
+            // Target is visible, keep the current highlight
+            return;
+          }
+          
+          // Otherwise, let scroll spy determine the correct highlight
           const event = new Event('scroll');
           window.dispatchEvent(event);
-        }, 800); // Smooth scroll typically takes 500-700ms
+        }, 800);
       }
     });
     
@@ -211,7 +224,24 @@ function setupTOCScrollSpy() {
       // Update TOC only if the active header changed
       if (activeHeader) {
         const newActiveLink = document.querySelector(`.toc-link[href="#${activeHeader.id}"]`);
+        
+        // If this is different from the last active link, update it
         if (newActiveLink !== lastActiveLink) {
+          // But if we recently clicked a link and it's still reasonably valid, don't override it
+          if (window.tocClickedLink && lastActiveLink === window.tocClickedLink) {
+            const clickedTarget = document.getElementById(window.tocClickedLink.getAttribute('href').substring(1));
+            if (clickedTarget) {
+              const clickedRect = clickedTarget.getBoundingClientRect();
+              const windowHeight = window.innerHeight;
+              
+              // If clicked target is still in a reasonable position, keep it highlighted
+              if (clickedRect.top <= windowHeight * 0.6 && clickedRect.bottom >= -windowHeight * 0.1) {
+                ticking = false;
+                return;
+              }
+            }
+          }
+          
           updateActiveTOCItem(newActiveLink);
           lastActiveLink = newActiveLink;
         }
