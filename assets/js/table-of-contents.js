@@ -97,13 +97,25 @@ function createTOC(headers) {
       e.preventDefault();
       const target = document.getElementById(header.id);
       if (target) {
+        // Immediately update the highlight
+        updateActiveTOCItem(link);
+        
+        // Start smooth scroll
         target.scrollIntoView({
           behavior: 'smooth',
           block: 'start'
         });
         
-        // Update active state
-        updateActiveTOCItem(link);
+        // Temporarily disable scroll spy during smooth scroll to prevent conflicts
+        window.tocScrollSpyEnabled = false;
+        
+        // Re-enable scroll spy after smooth scroll completes
+        setTimeout(() => {
+          window.tocScrollSpyEnabled = true;
+          // Force an update to ensure correct highlighting after scroll
+          const event = new Event('scroll');
+          window.dispatchEvent(event);
+        }, 800); // Smooth scroll typically takes 500-700ms
       }
     });
     
@@ -147,11 +159,17 @@ function setupTOCScrollSpy() {
     return;
   }
   
+  // Initialize scroll spy flag
+  window.tocScrollSpyEnabled = true;
+  
   let ticking = false;
   let lastActiveLink = null;
   
   function updateTOCOnScroll() {
     if (ticking) return;
+    
+    // Skip scroll spy if disabled (during smooth scroll from click)
+    if (window.tocScrollSpyEnabled === false) return;
     
     ticking = true;
     requestAnimationFrame(() => {
