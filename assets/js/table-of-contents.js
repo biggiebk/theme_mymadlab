@@ -147,121 +147,67 @@ function setupTOCScrollSpy() {
     return;
   }
   
-  // Use scroll-based approach for better top/bottom detection
   let ticking = false;
+  let lastActiveLink = null;
   
   function updateTOCOnScroll() {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const windowHeight = window.innerHeight;
-        const documentHeight = document.documentElement.scrollHeight;
-        
-        // Check if we're at the very top
-        if (scrollTop === 0) {
-          const firstHeader = headers[0];
-          if (firstHeader) {
-            const firstTocLink = document.querySelector(`.toc-link[href="#${firstHeader.id}"]`);
-            updateActiveTOCItem(firstTocLink);
-          }
-          ticking = false;
-          return;
-        }
-        
-        // Check if we're at the very bottom
-        if (scrollTop + windowHeight >= documentHeight - 10) {
-          const lastHeader = headers[headers.length - 1];
-          if (lastHeader) {
-            const lastTocLink = document.querySelector(`.toc-link[href="#${lastHeader.id}"]`);
-            updateActiveTOCItem(lastTocLink);
-          }
-          ticking = false;
-          return;
-        }
-        
-        // Find the currently visible header
-        let currentHeader = null;
-        let currentOffset = -1;
-        
-        headers.forEach((header) => {
-          const rect = header.getBoundingClientRect();
-          const headerTop = rect.top + scrollTop;
-          const offset = scrollTop - headerTop;
-          
-          // Header is above the viewport and closest to current scroll position
-          if (offset >= -100 && (currentHeader === null || offset > currentOffset)) {
-            currentHeader = header;
-            currentOffset = offset;
-          }
-        });
-        
-        // If no header is found above, use the first one that's visible
-        if (!currentHeader) {
-          for (let i = 0; i < headers.length; i++) {
-            const rect = headers[i].getBoundingClientRect();
-            if (rect.top <= windowHeight * 0.5) {
-              currentHeader = headers[i];
-            } else {
-              break;
-            }
-          }
-        }
-        
-        // Update active TOC item
-        if (currentHeader) {
-          const tocLink = document.querySelector(`.toc-link[href="#${currentHeader.id}"]`);
-          updateActiveTOCItem(tocLink);
-        }
-        
-        ticking = false;
-      });
+    if (ticking) return;
+    
+    ticking = true;
+    requestAnimationFrame(() => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
       
-      ticking = true;
-    }
+      let activeHeader = null;
+      
+      // Special case: at the very top of the page
+      if (scrollTop <= 50) {
+        activeHeader = headers[0];
+      }
+      // Special case: at the very bottom of the page  
+      else if (scrollTop + windowHeight >= documentHeight - 50) {
+        activeHeader = headers[headers.length - 1];
+      }
+      // Normal case: find the header that's currently in view
+      else {
+        // Find the last header that's above the middle of the viewport
+        const viewportMiddle = scrollTop + (windowHeight * 0.3); // Use top 30% as trigger point
+        
+        for (let i = headers.length - 1; i >= 0; i--) {
+          const header = headers[i];
+          const headerTop = header.getBoundingClientRect().top + scrollTop;
+          
+          if (headerTop <= viewportMiddle) {
+            activeHeader = header;
+            break;
+          }
+        }
+        
+        // If no header found above viewport middle, use the first visible one
+        if (!activeHeader) {
+          activeHeader = headers[0];
+        }
+      }
+      
+      // Update TOC only if the active header changed
+      if (activeHeader) {
+        const newActiveLink = document.querySelector(`.toc-link[href="#${activeHeader.id}"]`);
+        if (newActiveLink !== lastActiveLink) {
+          updateActiveTOCItem(newActiveLink);
+          lastActiveLink = newActiveLink;
+        }
+      }
+      
+      ticking = false;
+    });
   }
   
-  // Add scroll event listener
-  window.addEventListener('scroll', updateTOCOnScroll);
+  // Throttled scroll event listener
+  window.addEventListener('scroll', updateTOCOnScroll, { passive: true });
   
   // Initial call to set the correct state
-  updateTOCOnScroll();
-  
-  // Also use Intersection Observer as fallback for better performance on modern browsers
-  const observerOptions = {
-    rootMargin: '-10% 0px -80% 0px',
-    threshold: [0, 0.25, 0.5, 0.75, 1]
-  };
-  
-  const observer = new IntersectionObserver((entries) => {
-    // Only use intersection observer if we're not at the very top or bottom
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const windowHeight = window.innerHeight;
-    const documentHeight = document.documentElement.scrollHeight;
-    
-    if (scrollTop === 0 || scrollTop + windowHeight >= documentHeight - 10) {
-      return; // Let the scroll handler deal with edge cases
-    }
-    
-    let visibleEntry = null;
-    let maxRatio = 0;
-    
-    entries.forEach((entry) => {
-      if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
-        visibleEntry = entry;
-        maxRatio = entry.intersectionRatio;
-      }
-    });
-    
-    if (visibleEntry) {
-      const id = visibleEntry.target.id;
-      const tocLink = document.querySelector(`.toc-link[href="#${id}"]`);
-      updateActiveTOCItem(tocLink);
-    }
-  }, observerOptions);
-  
-  headers.forEach((header) => {
-    observer.observe(header);
-  });
+  setTimeout(updateTOCOnScroll, 100);
 }
 
 function updateActiveTOCItem(activeLink) {
@@ -273,20 +219,5 @@ function updateActiveTOCItem(activeLink) {
   // Add active class to current link
   if (activeLink) {
     activeLink.classList.add('active');
-    
-    // Scroll the TOC to keep the active item visible
-    const tocContainer = document.querySelector('.table-of-contents');
-    if (tocContainer) {
-      const linkRect = activeLink.getBoundingClientRect();
-      const tocRect = tocContainer.getBoundingClientRect();
-      
-      // Check if the active link is outside the visible area of the TOC
-      if (linkRect.top < tocRect.top || linkRect.bottom > tocRect.bottom) {
-        activeLink.scrollIntoView({
-          behavior: 'smooth',
-          block: 'center'
-        });
-      }
-    }
   }
 }
