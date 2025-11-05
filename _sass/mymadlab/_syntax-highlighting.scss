@@ -38,6 +38,51 @@
     }
   }
 
+  /* Line numbers styling for Rouge/Kramdown */
+  .lineno {
+    color: #75715e;
+    padding-right: 1em;
+    user-select: none;
+    border-right: 1px solid rgba(117, 113, 94, 0.3);
+    margin-right: 1em;
+    display: inline-block;
+    min-width: 2em;
+    text-align: right;
+  }
+
+  /* Ensure code with line numbers doesn't have extra padding */
+  .rouge-table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    width: 100%;
+    
+    .rouge-gutter {
+      padding: 0;
+      border-right: 1px solid rgba(117, 113, 94, 0.3);
+      
+      pre {
+        padding: 1em 0.5em;
+        margin: 0;
+        border: none;
+        background: transparent;
+        color: #75715e;
+        text-align: right;
+        user-select: none;
+      }
+    }
+    
+    .rouge-code {
+      padding: 0;
+      
+      pre {
+        padding: 1em;
+        margin: 0;
+        border: none;
+        background: transparent;
+      }
+    }
+  }
+
   // Base styles
   .c     { color: #75715e; font-style: italic }                     // Comment
   .err   { color: #960050; background-color: #1e0010 }             // Error
@@ -244,5 +289,44 @@ pre[class*="language-"] {
     background: rgba(166, 226, 46, 0.2) !important;
     border-color: #a6e22e !important;
     color: #a6e22e !important;
+  }
+}
+
+/**
+ * Prism line numbers styling
+ */
+pre[class*="language-"].line-numbers {
+  position: relative;
+  padding-left: 3.8em;
+  counter-reset: linenumber;
+}
+
+pre[class*="language-"].line-numbers > code {
+  position: relative;
+  white-space: inherit;
+}
+
+.line-numbers .line-numbers-rows {
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  font-size: 100%;
+  left: -3.8em;
+  width: 3em;
+  letter-spacing: -1px;
+  border-right: 1px solid rgba(117, 113, 94, 0.3);
+  user-select: none;
+  
+  > span {
+    display: block;
+    counter-increment: linenumber;
+    
+    &:before {
+      content: counter(linenumber);
+      color: #75715e;
+      display: block;
+      padding-right: 0.8em;
+      text-align: right;
+    }
   }
 }
