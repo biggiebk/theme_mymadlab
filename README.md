@@ -168,7 +168,10 @@ repository: yourusername/repository-name  # For GitHub link in header
 # Control what appears on your site
 show_posts: true          # Show/hide posts list on homepage
 show_rss_subscribe: true  # Show/hide RSS subscription links
+show_post_dates: true     # Show/hide publication dates in post listings (set to false to hide)
 ```
+
+You can control whether post dates appear in listing views (homepage, category previews, and post lists) using the `show_post_dates` flag. Set it to `false` in your `_config.yml` to hide dates from those lists while keeping them on individual post pages.
 
 ### Header Navigation
 ```yaml

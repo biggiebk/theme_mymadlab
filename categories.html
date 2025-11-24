@@ -31,7 +31,9 @@ permalink: /categories/
             {% for post in posts limit:3 %}
               <div class="preview-post">
                 <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-                <span class="preview-date">{{ post.date | date: "%b %d" }}</span>
+                {%- if site.show_post_dates -%}
+                  <span class="preview-date">{{ post.date | date: "%b %d" }}</span>
+                {%- endif -%}
               </div>
             {% endfor %}
             {% if posts.size > 3 %}
