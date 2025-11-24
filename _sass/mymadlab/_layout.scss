@@ -350,9 +350,9 @@
   list-style: none;
 
   > li {
-    margin-bottom: $spacing-unit;
-    border-bottom: 1px solid $border-color;
-    padding-bottom: $spacing-unit / 2;
+    margin-bottom: $spacing-unit / 2;
+    border-bottom: 1px solid rgba($border-color, 0.6);
+    padding-bottom: $spacing-unit / 3;
   }
 }
 
@@ -363,7 +363,7 @@
 
 .post-link {
   display: block;
-  @include relative-font-size(1.5);
+  @include relative-font-size(1.25);
   color: $accent-color;
 
   &:hover {
@@ -459,7 +459,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.15rem;
   flex-wrap: wrap;
   
   .post-meta {

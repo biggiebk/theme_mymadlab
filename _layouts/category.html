@@ -13,7 +13,9 @@ layout: default
       <ul class="post-list">
         {%- for post in posts -%}
         <li>
-          <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+          {%- if site.show_post_dates -%}
+            <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+          {%- endif -%}
           <h3>
             <a class="post-link" href="{{ post.url | relative_url }}">
               {{ post.title | escape }}
