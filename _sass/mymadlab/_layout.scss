@@ -312,8 +312,8 @@
 // Content adjustment when TOC is present (fixed positioning)
 @media screen and (min-width: #{$on-laptop + 1px}) {
   body.has-toc .page-content {
-    /* leave a small gutter based on the TOC width + offset */
-    margin-left: 260px; /* make room for TOC while giving content more space */
+    /* leave a small gutter based on the TOC left offset + width */
+    margin-left: 280px; /* TOC left (30px) + TOC width (250px) = 280px */
     margin-right: 20px; /* slightly smaller right gutter */
   }
 }

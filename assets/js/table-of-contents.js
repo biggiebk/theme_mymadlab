@@ -37,8 +37,7 @@ function generateTableOfContents() {
   console.log('TOC: Found', headers.length, 'headers');
   
   if (headers.length === 0) {
-    console.log('TOC: No headers found, creating debug TOC');
-    createEmptyTOC(); // For debugging
+    console.log('TOC: No headers found, not creating a TOC');
     return;
   }
 
@@ -141,12 +140,19 @@ function createTOC(headers) {
 }
 
 function insertTOC(tocContainer) {
-  // For fixed positioning, we can append to body
+  // Only append TOC when it actually has list items
+  const listItems = tocContainer.querySelectorAll('.toc-list li');
+  if (!listItems || listItems.length === 0) {
+    console.log('TOC: Not inserting empty TOC container');
+    return;
+  }
+
+  // For fixed positioning, append to body
   document.body.appendChild(tocContainer);
-  
+
   // Add has-toc class to body for styling
   document.body.classList.add('has-toc');
-  
+
   console.log('TOC: TOC inserted successfully with fixed positioning');
 }
 
