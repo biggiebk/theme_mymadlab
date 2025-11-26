@@ -316,6 +316,11 @@
     margin-left: 280px; /* TOC left (30px) + TOC width (250px) = 280px */
     margin-right: 20px; /* slightly smaller right gutter */
   }
+
+  /* When TOC is present, remove the wrapper's left padding so content sits closer to the TOC */
+  body.has-toc .page-content .wrapper {
+    padding-left: 0;
+  }
 }
 
 .page-heading {
