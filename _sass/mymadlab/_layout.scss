@@ -318,8 +318,10 @@
   }
 
   /* When TOC is present, remove the wrapper's left padding so content sits closer to the TOC */
-  body.has-toc .page-content .wrapper {
+  /* Remove both left and right padding from .wrapper when TOC is present */
+  body.has-toc .wrapper {
     padding-left: 0;
+    padding-right: 0;
   }
 }
 
